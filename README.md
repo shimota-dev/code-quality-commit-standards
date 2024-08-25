@@ -1,50 +1,44 @@
-# React + TypeScript + Vite
+# TypeScript + React プロジェクトの品質管理ツールセット
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+このリポジトリは、TypeScriptとReactを使用したプロジェクトのための包括的な品質管理ツールセットを提供します。Linter、Formatter、そしてコミットメッセージチェッカーが含まれており、Git commitの際に自動的に実行されるように設定されています。
 
-Currently, two official plugins are available:
+## 特徴
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- ESLintによるコード品質チェック
+- Prettierによるコードフォーマット
+- Huskyを使用したGitフック
+- lint-stagedによるステージングされたファイルのみのチェック
+- commitlintによるコミットメッセージの標準化
 
-## Expanding the ESLint configuration
+## セットアップ
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+`setup_config`ディレクトリには、これらのツールを簡単にセットアップするためのMakefileとシェルスクリプトが含まれています。
 
-- Configure the top-level `parserOptions` property like this:
+### 使用方法
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+1. このリポジトリをクローンまたはダウンロードします。
+2. `setup_config`ディレクトリに移動します。
+3. 以下のコマンドを実行します：
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+   ```
+   make all
+   ```
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+   これにより、必要なすべてのツールがインストールされ、設定ファイルがプロジェクトルートにコピーされます。
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## 含まれる設定ファイル
+
+- `.prettierrc`: Prettierの設定
+- `.prettierignore`: Prettierが無視するファイルの設定
+- `.lintstagedrc.json`: lint-stagedの設定
+- `commitlint.config.js`: commitlintの設定
+- `.husky/`: Huskyのフック設定
+
+## 注意事項
+
+- このセットアップは、TypeScriptとReactを使用したプロジェクトを前提としています。
+- 既存のプロジェクトに適用する場合は、既存の設定ファイルとの競合に注意してください。
+
+## カスタマイズ
+
+各ツールの設定は、対応する設定ファイルを編集することでカスタマイズできます。プロジェクトの要件に合わせて適宜調整してください。
