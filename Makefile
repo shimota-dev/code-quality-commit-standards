@@ -1,4 +1,4 @@
-.PHONY: all eslint prettier
+.PHONY: all eslint prettier husky lint-staged commitlint
 # eslintとprettierによるlinterとformatterの初期設定方法
 all: eslint prettier husky lint-staged commitlint
 
