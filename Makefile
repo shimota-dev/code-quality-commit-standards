@@ -19,7 +19,7 @@ lint-staged:
 	npm install --save-dev lint-staged
 	echo "npx lint-staged" > .husky/pre-commit
 # eslintとprettierをlint-stagedで実行する設定を加える。
-	echo -e '{\n  "*.{js,jsx}": "eslint",\n  "*.{js,jsx,ts,tsx,md,html,css}": "prettier --write"\n}' > .lintstagedrc.json
+	echo -e '{\n  "*.{ts,tsx}": "eslint",\n  "*.{js,jsx,ts,tsx,md,html,css}": "prettier --write"\n}' > .lintstagedrc.json
 
 commitlint:
 	npm install --save-dev @commitlint/{cli,config-conventional}
